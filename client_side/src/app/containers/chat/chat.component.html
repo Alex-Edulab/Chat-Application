@@ -1,0 +1,42 @@
+<header class="chat-header">
+  <h1 style="text-align:center ;"><i class="fas fa-smile"></i> Real Time Chat Application Demo</h1>
+</header>
+<button style="float:right;" (click)="leaveMessage()">Leave</button>
+
+<div class="container"><br>  
+  <!-- <app-username (userNameEvent)="userNameUpdate($event)" (click)="username()" *ngIf="!userName"></app-username> -->
+  <app-username (userNameEvent)="userNameUpdate($event)" *ngIf="!userName"></app-username>
+  <div class="chatbox">
+    <div class="chatbox__user-list">
+      <div style="background-color:rgba(255, 255, 255, 0.1) ; padding: 15px;">
+      <h2>Users</h2></div>
+      <div class="chatbox__user--active" *ngFor="let user of userList" >
+        <p  (click)="getuser(user)">{{ user.sender }}</p>
+        <!-- <p >{{ user.sender }}</p>  -->
+        <!-- show the user list from the database  -->
+      </div>
+    </div>
+    <div class="messages_list">
+      <div style="background-color:rgba(255, 255, 255, 0.1) ; padding: 15px;">
+        <h2>Chat</h2></div>
+      <div class="chatbox__messages" *ngFor="let msg of messageList" [ngClass]="{mine: msg.mine}">
+        <div class="user-message">
+          <div class="message-box">
+            <p class="name">{{ msg.userName }}</p>
+            <br/>
+            <p class="message">{{ msg.message }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background-color:rgba(255, 255, 255, 0.1) ; padding: 15px;">
+      <div class="send-message" *ngIf="event">
+        <input type="text" [(ngModel)]="message">
+        <button  (click)="sendMessage(event)">Send</button>
+      </div></div>
+  </div>
+</div>
+
+
+
+
